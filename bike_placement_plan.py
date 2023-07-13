@@ -1,5 +1,6 @@
 import numpy as np
 import psycopg2
+#test
 
 # 경사 하강법을 사용하여 모델 학습
 def train_model(features, labels, bias):
