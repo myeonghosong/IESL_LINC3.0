@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <libpq-fe.h>
+#include <string.h>
+#include "C:\Program Files\PostgreSQL\15\include\libpq-fe.h"
+
+double slope, intercept;
 
 // 예측 모델에 필요한 데이터 구조체
 struct Data {
@@ -28,8 +31,8 @@ void trainModel(struct Data* data, int numSamples) {
         sumXX += data[i].time * data[i].time;
     }
     
-    double slope = (numSamples * sumXY - sumX * sumY) / (numSamples * sumXX - sumX * sumX);
-    double intercept = (sumY - slope * sumX) / numSamples;
+    slope = (numSamples * sumXY - sumX * sumY) / (numSamples * sumXX - sumX * sumX);
+    intercept = (sumY - slope * sumX) / numSamples;
     
     printf("학습 완료! 회귀식: y = %.2f * x + %.2f\n", slope, intercept);
 }
@@ -50,7 +53,8 @@ int main() {
     // postgreSQL DB에 연결
     PGconn *conn;
     PGresult *res;
-    const char *conninfo = "host=your_host port=your_port dbname=your_db user=your_user password=your_password";
+    const char *conninfo = "host=localhost port=5432 dbname=Rldata user=postgres password=iesllink30!";
+
     conn = PQconnectdb(conninfo);
 
     if (PQstatus(conn) != CONNECTION_OK) {
