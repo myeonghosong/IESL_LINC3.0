@@ -1,4 +1,5 @@
 import psycopg2
+from datetime import datetime
 
 def get_data_and_average(month, dow, hour, dong_index):
     # PostgreSQL 연결 정보 설정
@@ -35,5 +36,19 @@ def get_data_and_average(month, dow, hour, dong_index):
     # 연결 종료
     connection.close()
 
+# 현재 시간 정보를 얻어옴
+now = datetime.now()
+current_month = now.month
+current_day_of_week = now.weekday()  # 월요일: 0, 일요일: 6 (요일 순서를 변경하여 저장)
+current_hour = now.hour
+
+# 토요일은 6으로 저장되므로, 일요일은 0으로, 토요일은 6으로 변환
+if current_day_of_week == 6:
+    current_day_of_week = 0
+else:
+    current_day_of_week += 1
+
+# 현재 시간 정보를 함수에 전달
+print("현재 ->",current_month,"월", current_day_of_week, current_hour,"시간 대")
 # 예시 데이터 입력 (월, 요일, 시간대, 동번호)
-get_data_and_average(3, 1, 12, 44)
+get_data_and_average(current_month, current_day_of_week, current_hour, 44)
