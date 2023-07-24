@@ -51,4 +51,5 @@ else:
 # 현재 시간 정보를 함수에 전달
 print("현재 ->",current_month,"월", current_day_of_week, current_hour,"시간 대")
 # 예시 데이터 입력 (월, 요일, 시간대, 동번호)
-get_data_and_average(current_month, current_day_of_week, current_hour, 44)
+#get_data_and_average(current_month, current_day_of_week, current_hour, 44)
+get_data_and_average(7, 0, 18, 44)
