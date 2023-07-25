@@ -111,7 +111,7 @@ def admin_menu():
     print("관리자 메뉴 선택")
     # 현재 시간 정보를 함수에 전달
     print("현재 ->",current_month,"월", current_day_of_week, current_hour,"시간 대")
-    get_and_analyze_data(current_month, current_day_of_week, current_hour)
+    get_and_analyze_data(current_month, current_day_of_week, current_hour) 
 
 
 def main():
@@ -121,7 +121,7 @@ def main():
         # 현재 시간 정보를 얻어옴
         now = datetime.now()
         current_month = now.month
-        current_day_of_week = now.weekday()  # 월요일: 0, 일요일: 6 (요일 순서를 변경하여 저장)
+        current_day_of_week = now.weekday()
         current_hour = now.hour
         
         if current_day_of_week == 6:
@@ -146,7 +146,7 @@ def main():
         elif choice == 'r':
             continue
         else:
-            print("잘못된 입력입니다. 다시 선택해주세요.")
+            print("잘못된 입력")
 
 if __name__ == "__main__":
     main()
